@@ -1,0 +1,47 @@
+there are four kinds showed as blow, it need to be understood step by step
+'adverb' is isolated scope value for its own and setted in link function
+'who' is attr from html, when use '@' simbol, it refers to the value in html attributes with the same name if not nomited .
+'flavor' is the property inherited from controller
+'howTe' and 'how-te' is for nomited attribute and also testing camel casing
+
+when comes to = binding, it is the same just replace the '@' simbol to '='
+
+<script>
+	
+	var myModule = angular.module("MyModule", []);
+	myModule.controller('MyCtrl', ['$scope', function($scope){
+		$scope.ctrlFlavor="Sprite";
+
+	}])
+	myModule.directive("drink", function() {
+		return {
+			restrict:'AE',
+			scope:{ 
+				who:'@',// when comes to = binding, it is the same just replace the '@' simbol to '='
+				flavor:'@',
+				adj:'@howTe' // howTe refers to how-te in html file, it is camel casing, if use howTe in html it won't work.
+				//,scope.adverb:'very much'  // wrong way to set isolated scope value
+			},
+			//scope.adverb:'very much',	// still wrong way to set isolated scope value
+			template:"<div>{{who}} love {{adj}} {{flavor}} {{adverb}}</div> ", 
+			link:function(scope,element,attrs){
+				scope.adverb='very much'  //right way to set isolated scope value
+			}
+		}
+	});
+
+</script>
+<!doctype html>
+<html ng-app="MyModule">
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" href="css/bootstrap-3.0.0/css/bootstrap.css">
+</head>
+<body>
+	<div ng-controller="MyCtrl">
+		<drink flavor="{{ctrlFlavor}}" who="I" how-te='fantastic' > </drink>  <!-- set respectively the isolated scope value in attrs -->	
+	</div>
+</body>
+<script src="framework/angular-1.3.0.14/angular.js"></script>
+<script src="ScopeAt.js"></script>
+</html>
