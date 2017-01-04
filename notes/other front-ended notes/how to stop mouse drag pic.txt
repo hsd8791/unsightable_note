@@ -1,0 +1,10 @@
+在img标签中加入ondragstart=”return false;”即可！代码如下：
+
+    <img src=”logo.gif” width=88 height=31 ondragstart=”return false;” >
+    oncontextmenu=”return false;” //禁止鼠标右键
+
+    ondragstart=”return false;” //禁止鼠标拖动
+
+    onselectstart=”return false;”//文字禁止鼠标选中
+
+    onselect=”document.selection.empty();”//禁止复制文本
