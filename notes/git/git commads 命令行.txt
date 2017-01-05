@@ -42,3 +42,4 @@ git tag -d <tagname>可以删除一个本地标签；
 git push origin :refs/tags/<tagname>可以删除一个远程标签
 
 git pull 将当前分支的远程库取到本地（不影响本地已经编辑过的内容）
+$ git commit -a -m ""          #等价于: $ git commit -am ""
