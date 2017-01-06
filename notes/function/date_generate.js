@@ -15,7 +15,6 @@
   return sNow.slice(AiStart,AiEnd);
 };
 function fToTwo(aNum){
-
   return aNum>=10?aNum:"0"+aNum;
 };
 //yyyy-mm-dd hh:mm:ss ----(0,19)
