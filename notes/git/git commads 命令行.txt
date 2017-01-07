@@ -46,6 +46,10 @@ $ git commit -a -m ""          #µÈ¼ÛÓÚ: $ git commit -am ""
 
 git remote set-url origin URL
 
+git remote rm origin
+git remote add origin git@github.com:Liutos/foobar.git
+
+
 git remote set-branches [--add] <name> <branch>...
 git remote set-url [--push] <name> <newurl> [<oldurl>]
 git remote set-url --add <name> <newurl>
