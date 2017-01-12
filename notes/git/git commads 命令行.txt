@@ -1,4 +1,4 @@
-git ÃüÁîĞĞ
+ git ÃüÁîĞĞ
  $ mkdir learngit
 $ cd learngit
 $ pwd/Users/michael/learngit
