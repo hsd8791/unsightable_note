@@ -13,9 +13,9 @@ git checkout  -- filename
 git reset HEAD filename
 
 $ ssh-keygen -t rsa -C "youremail@example.com"
-git push -u origin master
+## git push -u origin master  
 error: src refspec master does not match any. 引起该错误的原因是,目录中没有文件,空目录是不能提交上去的
-git remote add original git@github.com:hsd8791/gitlearn.git
+git remote add origin git@github.com:hsd8791/gitlearn.git
 git clone git@github.com:hsd8791/test2016.10.14.git
 
 $ git remote -v
