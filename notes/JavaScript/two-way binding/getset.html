@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.section {
+			box-shadow: 2px 2px 8px rgb(204, 204, 204);
+			padding: 30px;
+			margin: 30px;
+		}
+
+
+		label span {
+			width: 80px;
+			display: inline-block;
+		}
+
+		.green {
+			color: #42b984;
+		}
+	</style>
+</head>
+<body>
+	<div id="demo1" class="section">
+	</div>
+
+	<script type="text/javascript">
+		
+		var svd = window.svd;
+
+		var el = svd.el
+		var diff = svd.diff
+		var patch = svd.patch
+
+		function MVVM(root, opts) {
+			this.root = document.querySelector(root);
+			this.opts = opts || {};
+			this.model = this.opts.model || {};
+		}
+
+		MVVM.prototype = {
+			init: function () {
+				var vTree = this.genVTree(this.model);
+				this.tree = vTree;
+				this.root.appendChild(vTree.render());
+			},
+			
+			setState(object) {
+				var self = this;
+				var oldTree = this.tree;
+				Object.keys(object).forEach(function (key) {
+					self.model[key] = object[key];
+				});
+				
+				var newTree = this.genVTree(this.model);
+				this.tree = newTree;
+				var patches = diff(newTree, oldTree);
+				patch(this.root, patches);
+				
+			},
+			
+			genVTree: function (model) {
+				return el('div', {'id': 'container'}, [
+					el('span', [model.time])
+					]);
+			},
+			
+		}
+
+		function mvvm(root, opts){
+			var m = new MVVM(root, opts);
+			m.init();
+			return m;
+		}
+
+		var demo = mvvm('#demo1', {
+			model: {
+				content: 'hello world',
+				css: 'green',
+				time: Date()
+			}
+		});
+
+		setInterval(function () {
+			demo.setState({time: Date()})
+		}, 1000);
+
+	</script>
+</body>
+</html>

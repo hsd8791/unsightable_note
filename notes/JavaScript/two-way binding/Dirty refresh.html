@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.section {
+			box-shadow: 2px 2px 8px rgb(204, 204, 204);
+			padding: 30px;
+			margin: 30px;
+		}
+
+
+		label span {
+			width: 80px;
+			display: inline-block;
+		}
+
+		.green {
+			color: #42b984;
+		}
+	</style>
+
+</head>
+<body>
+	<div id="demo1" class="section">
+		Hello <span class='{{css}}' contenteditable="true">{{name}}</span>!
+		Hello <span class='{{css}}' contenteditable="true">{{name}}</span>!
+		<br>
+		<p >now is <span contenteditable="true">{{time}}</span> </p>
+		<p >now is <span contenteditable="true">{{time}}</span> </p>
+	</div>
+	<script type="text/javascript">
+		var start = '{{'
+		var end = '}}'
+
+		function each(attr, fn) {
+			for (var i = 0; i < attr.length; i++) {
+				fn.call(attr[i], i, attr[i])
+			}
+		}
+
+		function MVVM(dom, opts) {
+			this.opts = opts;
+			this.model = opts.model || {};
+			this.dom = document.querySelector(dom);
+		}
+
+		MVVM.prototype = {
+			
+			init: function () {
+				var self = this;
+				this.renderDom(this.dom);
+				
+			},
+			
+			renderDom: function (dom) {
+				var self = this;
+				
+				each(dom.attributes, function() {
+					self.render(this);
+				});
+
+				each(dom.childNodes, function() {
+					if (this.nodeType === 1) {
+						return self.renderDom(this)
+					}
+
+					self.render(this);
+				});
+				
+			},
+			
+			render: function (node) {
+				var self = this;
+				var attr = node.textContent.split(start);
+				if (!attr.length) return;
+				var ret = '';
+				
+				for (var i = 0; i < attr.length; i++) {
+					var two = attr[i].split(end);
+					if (two.length == 1) {
+						ret += attr[i];
+					} else {
+						ret = self.model[two[0] + two[1]];
+					}
+					node.textContent = ret;
+				}
+			}
+		}
+
+		function mvvm(dom, opts) {
+			var mvvm = new MVVM(dom, opts);
+			mvvm.init();
+			return mvvm;
+		}
+
+		var demo1 = mvvm('#demo1', {
+			model: {
+				name: 'world',
+				css: 'green',
+				time:'2010.11.11'
+			}
+		});
+
+
+	</script>
+</body>
+</html>
