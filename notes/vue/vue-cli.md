@@ -1,0 +1,1 @@
+在webpack.prod.conf.js文件中的webpackConfig找到output，添加一项 publicPath: './'

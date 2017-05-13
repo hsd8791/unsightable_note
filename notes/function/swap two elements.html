@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style type="text/css">
+		.inner{
+			width: 10px;
+			/*height: 10px;*/
+			background: red;
+		}
+	</style>
+</head>
+<body>
+
+
+
+<div id="container">
+	<div onclick="swapDiv(event,this);" id='t1'>
+		1
+		<div class="inner">1</div>
+	</div>
+	<div onclick="swapDiv(event,this);" id='t2'>
+		2
+		<div class="inner">2</div>
+	</div>
+	<div onclick="swapDiv(event,this);" id='t3'>
+		3
+		<div class="inner">3</div>
+	</div>
+	<div onclick="swapDiv(event,this);" id='t4'>
+		4
+		<div class="inner">4</div>
+	</div>
+	<div onclick="swapDiv(event,this);" id='t5'>
+		5
+		<div class="inner">5</div>
+	</div>
+</div>
+<hr>
+<div class="contaier2">
+	<div id="d1">
+		d1
+		<div class="inner">1</div>
+	</div>
+	<div id="d2">
+		d2
+		<div class="inner">1</div>
+	</div>
+	<div id="d3">
+		d3
+		<div class="inner">1</div>
+	</div>
+</div>
+	<script type="text/javascript">
+
+		var t1=document.getElementById('t1')
+		var t2=document.getElementById('t2')
+		var t3=document.getElementById('t3')
+		var d1=document.getElementById('d1')
+		var d2=document.getElementById('d2')
+		var d3=document.getElementById('d3')
+		var container=document.getElementById('container')
+		function swapDiv(event,elem){ //点击移动到最上方
+			elem.parentNode.insertBefore(elem,elem.parentNode.firstChild);
+		}
+
+
+		t1.onclick=function(){
+			console.log('click '+this.id)
+		}
+
+		function change(a,b){//交换指定的
+			var x=document.createElement('div')
+			//var temp=b.nextElementSibling
+			// console.log(temp)
+			a.parentElement.insertBefore(x,a)
+			b.parentElement.insertBefore(a,b)
+			x.parentElement.insertBefore(b,x)
+			x.parentElement.removeChild(x)
+
+		}
+
+</script>
+</body>
+</html>

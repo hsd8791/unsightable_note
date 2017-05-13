@@ -7,18 +7,21 @@
 	<input id="foo" type="text">
 	<br>
 	<input id="foo2" type="text">
+	<div id="foo3" type="div"></div>
+	<!-- 需要研究 {{}} 实现原理 -->
 
 	<script type="text/javascript">
 		user = {};		
 		inputElem = document.getElementById("foo");
 		inputElem2 = document.getElementById("foo2");
-		bindModelInput(user,'name',[inputElem,inputElem2]);
-
+		inputElem3 = document.getElementById("foo3");
+		bindModelInput(user,'name',[inputElem,inputElem2,inputElem3]);//注册~~~
 		function bindModelInput(obj, property, domElems) {
 			Object.defineProperty(obj, property, {
 				get: function() { return domElems[0].value; }, 
 				set: function(newValue) { 
 					for(let i=0;i<domElems.length;i++){
+						domElems[i].innerHTML=newValue
 						domElems[i].value=newValue
 						console.log(domElems[i].id+'\'s value is ',newValue)
 					}
@@ -27,11 +30,11 @@
 			});
 		}
 
-		inputElem.onchange = function() { user.name = this.value 
+		inputElem.oninput = function() { user.name = this.value 
 			console.log(this.id+'changed');
 
 		}
-		inputElem2.onchange = function() { user.name = this.value 
+		inputElem2.oninput = function() { user.name = this.value 
 			console.log(this.id+'changed');
 
 		}

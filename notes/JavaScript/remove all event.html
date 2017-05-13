@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style> 
+		
+		.test {
+			width: 200px;
+			background:red;
+			height: 200px;
+			border: 1px solid cyan;
+			position: relative;
+			margin:auto;
+
+		}
+		.text{
+			position: relative;
+			display: inline-block;
+			font-size: 16px;
+			line-height: 1;
+			background: yellow;
+		}
+
+
+	</style>
+
+
+</head>
+<body>
+	<div class="test test1" id='test1'>
+		<div class="text" id='inner1'>111111111</div>
+	</div>
+	<br>
+	<div class="test test1" id='test2'>
+		<div class="text" id='inner2'>2222222</div>
+		<div class="text" id='inner3'>333333</div>
+	</div>
+	
+	<script type="text/javascript">
+		t1=document.getElementById('test1')
+		t2=document.getElementById('test2')
+		i1=document.getElementById('inner1')
+		i2=document.getElementById('inner2')
+		t1.onclick=function(){
+			console.log(this.id);
+		}
+		t2.onclick=function(){
+			console.log(this.id);
+		}
+		i1.onclick=function(){
+			console.log(this.id);
+		}
+		i2.onclick=function(){
+			console.log(this.id);
+		}
+
+		var clone = t2.cloneNode();
+		while (t2.lastChild) {
+			clone.appendChild(t2.firstChild);
+		}
+		t2.parentNode.replaceChild(clone, t2);
+
+	</script>
+</body>
+</html>

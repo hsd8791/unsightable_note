@@ -1,0 +1,98 @@
+<html>
+<head>
+	<style type="text/css">
+		.container{
+			width: 200px;
+		}
+		.inner{
+			height: 50px;
+			background: red;
+			border:1px yellow solid;
+		}
+	</style>
+</head>
+
+<body>
+
+
+	<div class="container">
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+		<div class="inner"></div>
+	</div>
+	<script type="text/javascript">
+		var inners=document.querySelectorAll('.inner')
+		var func=function(){console.log('click');}
+		var container=document.querySelector('.container')
+		inners.forEach(function(el){
+			// el.addEventListener('click',func,false)
+		})
+		// for(let el of inners){
+		// 	// console.log(i);
+		// 	el.addEventListener('click',func,false)
+		// }
+		// inners[0].addEventListener('click',func,false)
+
+		// container.onclick=function(){
+		// 	inners[1].style.background='crimson'
+		// }
+		var promiseStart=Promise.resolve(0)
+		for(let i=0,j=promiseStart;i<inners.length;i++){
+			console.log(i);
+			j=j.then(function(index){
+				return new Promise(function(resolve,rej){
+					changeColor(container,inners,index,resolve)
+				})
+			})
+		}
+
+
+		// Promise.resolve(0)
+		// .then(function(index){
+		// 	return new Promise(function(resolve,rej){
+		// 		changeColor(container,inners,index,resolve)
+		// 	})
+		// })
+		// .then(function(index){
+		// 	console.log('index:',index);
+		// 	return new Promise(function(resolve,rej){
+		// 		container.onclick=function(){
+		// 			inners[index].style.background='cyan'
+		// 			container.onclick=null
+		// 			index++
+		// 			resolve(index)
+		// 		}
+		// 	})
+		// })
+		// .then(function(index){
+		// 	console.log('index:',index);
+		// 	return new Promise(function(resolve,rej){
+		// 		container.onclick=function(){
+		// 			inners[index].style.background='cyan'
+		// 			container.onclick=null
+		// 			index++
+		// 			resolve(index)
+		// 		}
+		// 	})
+		// })
+
+		var changeColor = function(bttnEl,targets,index,res){
+			console.log('handle index ',index);
+			bttnEl.onclick=function(){
+				targets[index].style.background='cyan'
+				container.onclick=null
+				index++
+				res(index)
+			}
+		}
+	</script>
+</body>
+
+</html>

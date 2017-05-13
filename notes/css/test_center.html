@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		*{
+			padding: 0;
+			margin: 0;
+		}
+
+		.outer{
+			border: 3px blue solid;
+			width: 300px;
+			height: 500px;			
+			position:relative;
+			left: 300px;
+			text-align:center; /*核心代码*/
+		}
+		.inner{
+			width: 400px;
+			height: 200px;
+			display:inline-block; /*核心代码*/
+			margin: -0 -30%; /*核心代码*/
+			position: relative; /*核心代码*/
+		}
+		.inner2{
+			background-color: rgba(25,33,215,0.15);
+			margin-top:-4px; /*去白边*/
+		}
+		.inner1{
+			background-color: rgba(215,33,0,0.15);
+		}		
+	
+/* flex="dir:top cross:center main:center */
+
+/*
+    .bg_panel2{
+      width: 100%;
+    
+      overflow: visible;
+
+    }
+
+
+*/
+	
+	</style>
+</head>
+<body>
+
+	<div class="outer">
+		<div class="inner inner1"></div>
+		<div class="inner inner2"></div>
+	</div>
+
+
+	
+	<script type="text/javascript">
+	</script>
+
+</body>
+</html>
+
+
+
+

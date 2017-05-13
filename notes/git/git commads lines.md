@@ -1,9 +1,9 @@
- git 命令行
+ git 脙眉脕卯脨脨
  $ mkdir learngit
 $ cd learngit
 $ pwd/Users/michael/learngit
 $ git init 
-$ ls -ah //显示当前文件
+$ ls -ah //脧脭脢戮碌卤脟掳脦脛录镁
 
 $ git add readme.txt
 $ git commit -m "wrote a readme file"
@@ -14,35 +14,35 @@ git reset HEAD filename
 
 $ ssh-keygen -t rsa -C "youremail@example.com"
 ## git push -u origin master  
-error: src refspec master does not match any. 引起该错误的原因是,目录中没有文件,空目录是不能提交上去的
+error: src refspec master does not match any. 脪媒脝冒赂脙麓铆脦贸碌脛脭颅脪貌脢脟,脛驴脗录脰脨脙禄脫脨脦脛录镁,驴脮脛驴脗录脢脟虏禄脛脺脤谩陆禄脡脧脠楼碌脛
 git remote add origin git@github.com:hsd8791/gitlearn.git
 git clone git@github.com:hsd8791/test2016.10.14.git
 
 $ git remote -v
 $ git push origin dev
 
-查看分支：git branch
-创建分支：git branch <name>
-切换分支：git checkout <name>
-创建+切换分支：git checkout -b <name>
-合并某分支到当前分支：git merge <name>
-删除分支：git branch -d <name>
+虏茅驴麓路脰脰搂拢潞git branch
+麓麓陆篓路脰脰搂拢潞git branch <name>
+脟脨禄禄路脰脰搂拢潞git checkout <name>
+麓麓陆篓+脟脨禄禄路脰脰搂拢潞git checkout -b <name>
+潞脧虏垄脛鲁路脰脰搂碌陆碌卤脟掳路脰脰搂拢潞git merge <name>
+脡戮鲁媒路脰脰搂拢潞git branch -d <name>
 
 
 git tag <tagname>
 git tag -a <tagname> -m '<message>'   <commit ID>
-git tag -s v0.2 -m "signed version 0.2 released" fec145a  私有标签  不懂~~
+git tag -s v0.2 -m "signed version 0.2 released" fec145a  脣陆脫脨卤锚脟漏  虏禄露庐~~
 
 git show <tagname>
 git tag
 
-git push origin <tagname>可以推送一个本地标签；
-git push origin --tags可以推送全部未推送过的本地标签；
-git tag -d <tagname>可以删除一个本地标签；
-git push origin :refs/tags/<tagname>可以删除一个远程标签
+git push origin <tagname>驴脡脪脭脥脝脣脥脪禄赂枚卤戮碌脴卤锚脟漏拢禄
+git push origin --tags驴脡脪脭脥脝脣脥脠芦虏驴脦麓脥脝脣脥鹿媒碌脛卤戮碌脴卤锚脟漏拢禄
+git tag -d <tagname>驴脡脪脭脡戮鲁媒脪禄赂枚卤戮碌脴卤锚脟漏拢禄
+git push origin :refs/tags/<tagname>驴脡脪脭脡戮鲁媒脪禄赂枚脭露鲁脤卤锚脟漏
 
-git pull 将当前分支的远程库取到本地（不影响本地已经编辑过的内容）
-$ git commit -a -m ""          #等价于: $ git commit -am ""
+git pull 陆芦碌卤脟掳路脰脰搂碌脛脭露鲁脤驴芒脠隆碌陆卤戮碌脴拢篓虏禄脫掳脧矛卤戮碌脴脪脩戮颅卤脿录颅鹿媒碌脛脛脷脠脻拢漏
+$ git commit -a -m ""          #碌脠录脹脫脷: $ git commit -am ""
 
 git remote set-url origin URL
 
