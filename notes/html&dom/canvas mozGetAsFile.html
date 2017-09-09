@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<h1>firefox only</h1>
+	<canvas id="canvas" width="100" height="100"></canvas>
+	<p><a href="#" id="link">Click here to try out mozGetAsFile().</a></p>
+	<script type="text/javascript">
+		function draw() {
+			var canvas = document.getElementById('canvas');
+			var ctx = canvas.getContext('2d');
+
+			ctx.fillStyle = 'rgb(200, 0, 0)';
+			ctx.fillRect(10, 10, 55, 50);
+
+			ctx.fillStyle = 'rgba(0, 0, 200, 0.5)';
+			ctx.fillRect(30, 30, 55, 50);
+
+			var link = document.getElementById('link');
+			link.addEventListener('click', copy);
+		}
+
+		function copy() {
+			var canvas = document.getElementById('canvas');
+			var f = canvas.mozGetAsFile('test.png');
+			var reader = new FileReader();
+			reader.readAsDataURL(f);
+
+			reader.onloadend = function() {
+				var newImg = document.createElement('img');
+				newImg.src = reader.result;
+				document.body.appendChild(newImg);
+			}
+		}
+
+		window.addEventListener('load', draw);
+	</script>
+</body>
+</html>

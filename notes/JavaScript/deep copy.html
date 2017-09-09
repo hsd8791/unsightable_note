@@ -1,0 +1,79 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>111</title>
+	
+</head>
+<body style="font-size: 12px" id='body'>
+
+
+	<div id="top" align="center">
+		222
+		<div id="nested">111</div>
+		222
+	</div>
+
+	<script type="text/javascript">
+
+
+
+
+		////////////////////////
+		//test deep set clone //
+		////////////////////////
+		function cloneObject(source) {
+			var key,value;
+			var clone = Object.create(source);
+
+			for (key in source) {
+				if (source.hasOwnProperty(key) === true) {
+					value = source[key];
+
+					if (value!==null && typeof value==="object") {
+						clone[key] = cloneObject(value);
+					} else {
+						clone[key] = value;
+					}
+				}
+			}
+			return clone;
+		}
+
+		function out(str) {
+			document.getElementById('body').innerHTML += str + "<br>";
+		}
+
+		var SomeObj = function () {
+			var obj = {
+				_val: 0,
+				set val(value) {
+					out("Set: " + value);
+					this._val = value;
+				},
+				get val() {
+					return this._val;
+				}
+			}
+			return obj;
+		};
+
+		var sObj = { 
+			type : 'some',
+			o : new SomeObj(),
+			id  : 900
+		};
+		sObj.o.val = 100;
+
+		var sCopy = cloneObject(sObj);
+		sCopy.o.val = 200;
+
+		out(sObj.o.val);
+
+
+
+
+ 
+	</script>
+</body>
+
+</html>

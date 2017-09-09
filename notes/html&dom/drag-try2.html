@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<!DOCTYPE html>
+<html>
+<head>
+	<style type="text/css">
+		#dropbox{
+			width: 100px;
+			height: 100px;
+			border:1px solid red;
+		}
+	</style>
+</head>
+
+<body>
+	<!-- <div draggable = "true">1</div> -->
+	<input type="file" id="fileElem" multiple accept="image/*" style="display:block;">
+	<div id="draggable" draggable="true">
+		This div is draggable
+	</div>
+	<a href="#" id="fileSelect">Select some files</a>
+	<div href="#" id="fileSelect1">Select some files</div>
+	
+	<div id="dropbox">
+
+	</div>
+	<div id="preview"></div>
+	<script type="text/javascript">
+
+	</script>
+	<script>
+		var draggable=document.querySelector('#draggable')
+		var fileSelect = document.getElementById("fileSelect"),
+		fileElem = document.getElementById("fileElem");
+
+		fileSelect.addEventListener("click", function (e) {
+			if (fileElem) {
+				fileElem.click();
+			}
+			e.preventDefault();
+		}, false);
+
+		var dropbox;
+
+		dropbox = document.getElementById("dropbox");
+		dropbox.addEventListener('dragenter',function(e){
+			console.log('enter')
+		},false)
+		dropbox.addEventListener("dragover", function(e){
+			e.preventDefault()
+		}, false);
+		dropbox.addEventListener("drop",function(e){
+			e.stopPropagation()
+			e.preventDefault()
+			console.log('drop',e)
+			console.log('data',e.dataTransfer.files[0])
+			fileElem.files=e.dataTransfer.files
+			handleFiles(e.dataTransfer.files)
+
+		}, false);
+		draggable.addEventListener("dragstart", function(e){
+			console.log('drag start')
+			// e.stopPropagation()
+			// e.preventDefault()
+		}, false);
+
+
+		function handleFiles(files) {
+		  for (var i = 0; i < files.length; i++) {
+		    var file = files[i];
+		    var imageType = /^image\//;
+		    
+		    if (!imageType.test(file.type)) {
+		      // continue;
+		    }
+		    
+		    var img = document.createElement("img");
+		    img.classList.add("obj");
+		    img.file = file;
+		    var preview=document.querySelector('#preview')
+		    preview.appendChild(img); // Assuming that "preview" is the div output where the content will be displayed.
+		    
+		    var reader = new FileReader();
+		    // console.log('reader',reader)
+		    reader.onload=function(e){
+		    	console.log('e',e)
+		    	// console.log('e',e.target.result)
+		    }
+				// reader.onload = (function(aImg) {
+				// 	return function(e) {
+				// 		aImg.src = e.target.result;
+				// 	};
+				// })(img);
+		    // reader.readAsDataURL(file);
+		    // reader.readAsArrayBuffer(file);
+		    reader.readAsBinaryString(file);
+		  }
+		}
+	</script>
+</body>
+</html>
+
+</html>

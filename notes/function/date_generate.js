@@ -1,5 +1,10 @@
- function fGetTimeString(AiStart, AiEnd, AsSetValue) {
-
+ function fGetTimeString(AsSetValue, AiStart, AiEnd) {
+   if (AiStart === undefined) {
+     AiStart = 0
+   }
+   if (AiEnd === undefined) {
+     AiEnd = 19
+   }
    if (AsSetValue === undefined) {
      var dNow = new Date();
    } else {

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>try drag</title>
+</head>
+<style type="text/css">
+	#dragbox,#dropbox{
+		
+		/*background: #ccc;*/
+	}
+	#dropbox{
+			width: 200px;
+		height: 200px;
+		background: red;
+	}
+</style>
+<body>
+	<!-- <p  draggable="true">1111</p> -->
+	<p draggable="true" id="dragbox">jiiiiiiiiiiiiiiiioj3org</p>
+	<p id="drag1" draggable="true" >这是一段可移动的段落。请把该段落拖入上面的矩形。</p>
+	<br>
+	<div id="dropbox" ></div>
+	<script type="text/javascript">
+		var dragbox=document.querySelector('#dragbox')
+		var dropbox=document.querySelector('#dropbox')
+		// dragbox.addEventListener('dragstart',dragstart,false)
+		// dragbox.addEventListener('drag',dragstart,false)
+		// dropbox.addEventListener('dragenter',dragenter,false)
+		// dropbox.addEventListener('dragover',dragover,false)
+		// dragbox.ondragstart=function(e){
+		// 	console.log('drag start')
+		// 	// e.dataTransfer.setData('text','11')
+		// 	e.preventDefault()
+		// }
+		dragbox.ondrag=function(e){
+			// console.log('draging')
+			e.preventDefault()
+		}
+		dragbox.ondragstart=function(e){
+			e.dataTransfer.setData("Text",e.target.id);
+			console.log('e.target.id',e.target.id)
+			console.log('drag start')
+
+		}
+		dropbox.ondragover=function(e){
+			console.log('drag over')
+			e.preventDefault()
+		}
+		dropbox.ondrop=function(e){
+			console.log('drag enter')
+			var data=e.dataTransfer.getData("Text")
+			console.log('data',data)
+			e.target.appendChild(document.getElementById(data));
+			e.preventDefault()
+		}
+		
+	</script>
+</body>
+</html>

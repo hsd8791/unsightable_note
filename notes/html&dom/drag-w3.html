@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<style type="text/css">
+		#div1 {width:350px;height:70px;padding:10px;border:1px solid #aaaaaa;}
+	</style>
+	<script type="text/javascript">
+		function allowDrop(ev)
+		{
+			// console.log('over')
+			ev.preventDefault();
+		}
+
+		function drag(ev)
+		{
+			// console.log('drag start')
+			ev.dataTransfer.setData("Text",ev.target.id);
+		}
+		function draging(){
+			// console.log('draging')
+		}
+		function drop(ev)
+		{
+			// console.log('drop')
+			var data=ev.dataTransfer.getData("Text");
+			console.log('data',data)
+			ev.target.appendChild(document.getElementById(data));
+			ev.preventDefault();
+		}
+	</script>
+</head>
+<body>
+
+	<div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+	<br />
+	<p id="drag1" draggable="true" ondragstart="drag(event)" ondrag='draging()'>这是一段可移动的段落。请把该段落拖入上面的矩形。</p>
+
+</body>
+</html>

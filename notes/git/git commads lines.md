@@ -54,3 +54,6 @@ git remote set-branches [--add] <name> <branch>...
 git remote set-url [--push] <name> <newurl> [<oldurl>]
 git remote set-url --add <name> <newurl>
 git remote set-url --delete <name> <url>
+
+git checkout -b <branch name>
+//创建并切换至新的分支
